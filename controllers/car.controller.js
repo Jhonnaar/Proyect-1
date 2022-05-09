@@ -5,9 +5,9 @@ export const get_car = async(req,res)=>{
     const car = await Car.find()
     if (car) {
         car = car.filter(c=>c.user_id==user.user_id)
-        res.json({car})
+        res.json(car)
     }else{
-        res.json({})
+        res.json()
     }
 }
 export const add_to_car = async(req,res)=>{
@@ -18,9 +18,9 @@ export const add_to_car = async(req,res)=>{
     })
     try {
         const savedCar = await newCar.save();
-        res.json({savedCar})
+        res.json(savedCar)
     } catch (error) {
-        res.json({})
+        res.json()
     }
 }
 export const delete_to_car = async(req,res)=>{
@@ -48,7 +48,7 @@ export const buy_car = async(req,res)=>{
             await h.save()
         }
     }else{
-        res.json({})
+        res.json()
     }
 }
 

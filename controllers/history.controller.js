@@ -5,8 +5,8 @@ export const get_history = async(req,res)=>{
     const hists = await History.find()
     if (hists) {
         hists = hists.filter(c=>c.user_id==user.user_id)
-        res.json({hists})
+        res.json(hists)
     }else{
-        res.json({})
+        res.json()
     }
 }
