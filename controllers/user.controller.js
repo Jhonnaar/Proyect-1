@@ -10,16 +10,15 @@ export const create_user = async (req, res) =>{
     })
     try {
         const savedUser = await newUser.save();
-        res.json({user: savedUser})
+        res.json({savedUser})
     } catch (error) {
-        console.log(error)
-        res.json({error: error})
+        res.json({})
     }
 }
 export const get_user = async (req, res)=>{
-    const user = await User.findById(req.params.user_id)
+    const user = await User.findById(req.query.user_id)
     if (!user) {
-        res.json("User not found")
+        res.json({})
     }else{
         res.json({user})
     }
@@ -32,10 +31,19 @@ export const login = async (req,res)=>{
         if (user.password==user_input.password) {
             res.json({user})
         }else{
-            res.json("Incorrect password")
+            res.json({})
         }
     }else{
-        res.json("User not found")
+        res.json({})
     }
 
+}
+export const get_prevLogin = async (req,res)=>{
+    const input_id = req.body
+    const user = await User.findById(input_id.user_id)
+    if (user) {
+        res.json({user})
+    }else{
+        res.json({})
+    }
 }
