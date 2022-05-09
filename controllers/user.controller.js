@@ -44,6 +44,6 @@ export const get_prevLogin = async (req,res)=>{
     if (user) {
         res.json({user})
     }else{
-        res.json({})
+        
     }
 }
